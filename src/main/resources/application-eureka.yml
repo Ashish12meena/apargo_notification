@@ -22,7 +22,7 @@ eureka:
 audit:
   enabled: ${AUDIT_ENABLED:true}
   service:
-    url: ${AUDIT_SERVICE_URL:http://localhost:8010}
+    url: ${AUDIT_SERVICE_URL:http://146.88.113:8035}
 
 # ============================================
 # FEIGN CLIENT CONFIGURATION̥
