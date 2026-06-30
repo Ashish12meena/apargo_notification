@@ -1,0 +1,137 @@
+# Mail Configuration (configure with your SMTP settings)
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:jahanvinwork@gmail.com}
+    password: ${MAIL_PASSWORD:kjjx rihw gllb nalb}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  default-encoding: ${MAIL_ENCODING:UTF-8}
+
+
+# ============================================
+# EMAIL CONFIGURATION
+# ============================================
+email:
+  from-email: jahanvinwork@gmail.com
+  name: AI GreenTick
+  encoding: UTF-8
+  provider:
+    active: SMTP
+    
+    smtp:
+      enabled: ${SMTP_PROVIDER_ENABLED:true}
+      priority: ${SMTP_PROVIDER_PRIORITY:10}
+    
+    sendgrid:
+      enabled: ${SENDGRID_PROVIDER_ENABLED:false}
+      priority: ${SENDGRID_PROVIDER_PRIORITY:5}
+      api-key: ${SENDGRID_API_KEY:}
+  
+  attachments:
+    allowed-types: ${EMAIL_ALLOWED_ATTACHMENT_TYPES:pdf,doc,docx,xls,xlsx,jpg,jpeg,png,gif,txt,csv}
+    max-size-per-file-mb: ${EMAIL_MAX_ATTACHMENT_SIZE_PER_FILE:10}
+    max-total-size-mb: ${EMAIL_MAX_TOTAL_ATTACHMENT_SIZE:25}
+
+    
+ # Template Configuration
+  template:
+    prefix: ${EMAIL_TEMPLATE_PREFIX:templates/email/}
+    suffix: ${EMAIL_TEMPLATE_SUFFIX:.html}
+    base-path: ${EMAIL_TEMPLATE_BASE_PATH:classpath:/templates/}
+    mode: ${EMAIL_TEMPLATE_MODE:HTML}
+    encoding: UTF-8
+    
+  
+  # Retry Configuration
+  retry:
+    enabled: ${EMAIL_RETRY_ENABLED:true}
+    max-attempts: ${EMAIL_RETRY_MAX_ATTEMPTS:3}
+    initial-delay-ms: ${EMAIL_RETRY_INITIAL_DELAY:2000}
+    multiplier: ${EMAIL_RETRY_MULTIPLIER:2.0}
+    max-delay-ms: ${EMAIL_RETRY_MAX_DELAY:60000}
+
+  # Rate Limiting
+  rate-limit:
+    enabled: ${EMAIL_RATE_LIMIT_ENABLED:true}
+    global:
+      requests-per-minute: ${EMAIL_RATE_LIMIT_GLOBAL_RPM:1000}
+      burst-capacity: ${EMAIL_RATE_LIMIT_GLOBAL_BURST:1500}
+    per-user:
+      requests-per-minute: ${EMAIL_RATE_LIMIT_USER_RPM:60}
+      burst-capacity: ${EMAIL_RATE_LIMIT_USER_BURST:100}
+    per-ip:
+      requests-per-minute: ${EMAIL_RATE_LIMIT_IP_RPM:100}
+      burst-capacity: ${EMAIL_RATE_LIMIT_IP_BURST:150}
+
+  # Validation
+  validation:
+    enabled: ${EMAIL_VALIDATION_ENABLED:true}
+    check-mx-records: ${EMAIL_VALIDATION_CHECK_MX:false}
+    disposable-domains-check: ${EMAIL_VALIDATION_DISPOSABLE_CHECK:true}
+    max-recipients: ${EMAIL_MAX_RECIPIENTS:50}
+    max-cc-recipients: ${EMAIL_MAX_CC:20}
+    max-bcc-recipients: ${EMAIL_MAX_BCC:50}
+    max-attachments: ${EMAIL_MAX_ATTACHMENTS:10}
+    max-attachment-size-mb: ${EMAIL_MAX_ATTACHMENT_SIZE:25}
+    max-body-size-kb: ${EMAIL_MAX_BODY_SIZE:500}
+
+# ============================================
+# PUSH NOTIFICATION CONFIGURATION
+# ============================================
+push:
+  active: FCM
+  
+  fcm:
+    enabled: ${FCM_ENABLED:true}
+    priority: ${FCM_PRIORITY:10}
+    project-id: ${FCM_PROJECT_ID:}
+    credentials-path: ${FCM_CREDENTIALS_PATH:firebase-service-account.json}
+    timeout: ${FCM_TIMEOUT:30000}
+    dry-run: ${FCM_DRY_RUN:false}
+  
+  apns:
+    enabled: ${APNS_ENABLED:false}
+    priority: ${APNS_PRIORITY:5}
+    team-id: ${APNS_TEAM_ID:}
+    key-id: ${APNS_KEY_ID:}
+    key-path: ${APNS_KEY_PATH:}
+    bundle-id: ${APNS_BUNDLE_ID:}
+    production: ${APNS_PRODUCTION:false}
+    timeout: ${APNS_TIMEOUT:30000}
+
+  web:
+    enabled: ${WEB_PUSH_ENABLED:false}
+    priority: ${WEB_PUSH_PRIORITY:5}
+    vapid-public-key: ${WEB_PUSH_VAPID_PUBLIC_KEY:}
+    vapid-private-key: ${WEB_PUSH_VAPID_PRIVATE_KEY:}
+    subject: ${WEB_PUSH_SUBJECT:mailto:support@aigreentick.com}
+    timeout: ${WEB_PUSH_TIMEOUT:30000}
+    default-ttl: ${WEB_PUSH_DEFAULT_TTL:86400}
+  
+  validation:
+    enabled: ${PUSH_VALIDATION_ENABLED:true}
+    max-recipients: ${PUSH_MAX_RECIPIENTS:100}
+    max-title-length: ${PUSH_MAX_TITLE_LENGTH:65}
+    max-body-length: ${PUSH_MAX_BODY_LENGTH:240}
+    max-data-payload-kb: ${PUSH_MAX_DATA_PAYLOAD_KB:4}
+  
+  retry:
+    enabled: ${PUSH_RETRY_ENABLED:true}
+    max-attempts: ${PUSH_RETRY_MAX_ATTEMPTS:3}
+    initial-delay-ms: ${PUSH_RETRY_INITIAL_DELAY:1000}
+    multiplier: ${PUSH_RETRY_MULTIPLIER:2.0}
+    max-delay-ms: ${PUSH_RETRY_MAX_DELAY:30000}
+
+# Firebase Configuration
+firebase:
+  enabled: ${FIREBASE_ENABLED:true}
+  credentials-path: ${FIREBASE_CREDENTIALS_PATH:firebase-service-account.json}
+  project-id: ${FIREBASE_PROJECT_ID:your-project-id}
+  database-url: ${FIREBASE_DATABASE_URL:}
+  storage-bucket: ${FIREBASE_STORAGE_BUCKET:}

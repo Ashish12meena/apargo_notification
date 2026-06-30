@@ -1,0 +1,40 @@
+# ============================================
+# EUREKA CLIENT CONFIGURATION
+# ============================================
+eureka:
+  client:
+    enabled: ${EUREKA_CLIENT_ENABLED:true}
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://146.88.24.113:8761/eureka/}
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    metadata-map:
+      version: ${application.version:1.0.0}
+      region: ${REGION:default
+
+# ============================================
+# AUDIT SERVICE CONFIGURATION
+# ============================================
+audit:
+  enabled: ${AUDIT_ENABLED:true}
+  service:
+    url: ${AUDIT_SERVICE_URL:http://localhost:8010}
+
+# ============================================
+# FEIGN CLIENT CONFIGURATION̥
+# ============================================
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 10000
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true

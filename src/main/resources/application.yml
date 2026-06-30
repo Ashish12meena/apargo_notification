@@ -1,0 +1,68 @@
+spring:
+  profiles:
+    active: dev
+    include:
+      - resilience
+      - feign
+      - database
+      - eureka
+      - redis
+      - notification-provider
+  application:
+    name: notification-service
+
+server:
+  port: 7996
+
+
+# ============================================
+# ASYNC CONFIGURATION
+# ============================================
+async:
+  email:
+    enabled: true
+    core-pool-size: 5
+    max-pool-size: 10
+    queue-capacity: 100
+    thread-name-prefix: email-async-
+    keep-alive-seconds: 60
+    await-termination-seconds: 60
+
+  push:
+    enabled: false
+    core-pool-size: 5
+    max-pool-size: 10
+    queue-capacity: 100
+    thread-name-prefix: push-async-
+    keep-alive-seconds: 60
+
+# ============================================
+# BATCH WRITER CONFIGURATION
+# ============================================
+batch:
+  notification:
+    enabled: ${BATCH_WRITER_ENABLED:false}
+    batch-size: ${BATCH_WRITER_SIZE:50}
+    queue-capacity: ${BATCH_WRITER_QUEUE:1000}
+    flush-interval-ms: ${BATCH_WRITER_FLUSH:1000}
+
+
+# ============================================
+# RATE LIMITING FOR INTERNAL SERVICES
+# ============================================
+ratelimit:
+  enabled: true
+  
+  # Global system protection (CRITICAL)
+  global:
+    requests-per-minute: 1000    # Total system capacity
+    burst-capacity: 1500
+  
+  # Per-service protection
+  per-service:
+    enabled: true
+    requests-per-minute: 200     # Max per internal service
+    burst-capacity: 300
+  
+
+

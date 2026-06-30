@@ -1,0 +1,18 @@
+# Mail Configuration (configure with your SMTP settings)
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:jahanvinwork@gmail.com}
+    password: ${MAIL_PASSWORD:kjjx rihw gllb nalb}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  default-encoding: ${MAIL_ENCODING:UTF-8}
+
+
+server:
+  port: 7996

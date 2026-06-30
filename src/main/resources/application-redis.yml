@@ -1,0 +1,36 @@
+spring:
+  # Redis Configuration
+  data:
+    redis:
+      host: 146.88.24.113
+      port: 6379
+      password: 2024@Bajajsys
+      database: 0
+      timeout: 3000ms
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 5
+          min-idle: 2
+          max-wait: -1ms
+        shutdown-timeout: 100ms
+  cache:
+    type: redis
+    redis:
+      time-to-live: 600000
+      cache-null-values: false
+      key-prefix: "notification:cache:"
+      use-key-prefix: true
+
+# Cache Configuration
+cache:
+  config:
+    media:
+      ttl: 3600 # 1 hour
+      max-size: 1000
+    storage-info:
+      ttl: 300 # 5 minutes
+      max-size: 100
+    user-media-list:
+      ttl: 600 # 10 minutes
+      max-size: 500
