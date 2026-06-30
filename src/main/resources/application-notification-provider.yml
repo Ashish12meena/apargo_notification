@@ -90,7 +90,7 @@ push:
   fcm:
     enabled: ${FCM_ENABLED:true}
     priority: ${FCM_PRIORITY:10}
-    project-id: ${FCM_PROJECT_ID:}
+    project-id: ${FCM_PROJECT_ID:aigreentick-40943}
     credentials-path: ${FCM_CREDENTIALS_PATH:firebase-service-account.json}
     timeout: ${FCM_TIMEOUT:30000}
     dry-run: ${FCM_DRY_RUN:false}
